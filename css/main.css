@@ -1,0 +1,25 @@
+body {
+ background-color: bisque;
+user-select: none;
+}
+div.board{
+  margin: auto;
+  text-align: center;
+
+}
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.cell {
+  
+  background-color: rgb(58, 59, 104);
+  text-align: center;
+  border: 1px solid black;
+  color: rgba(8, 218, 207, 0.781);
+    width: 40px;
+  height: 40px;
+  font-size: 20px;
+  padding: 0px;
+}
