@@ -99,12 +99,12 @@ function moveTo(i, j) {
   const lastColIdx = gBoard[0].length - 1
   // console.log(j)
 
-  if (j === -1) j = lastColIdx
-  if (j === lastColIdx + 1) j = 0
-  if (i === -1) i = lastRowIdx
-  if (i === lastRowIdx + 1) i = 0
+  // if (j === -1) j = lastColIdx
+  // if (j === lastColIdx + 1) j = 0
+  // if (i === -1) i = lastRowIdx
+  // if (i === lastRowIdx + 1) i = 0
 
-  console.log(i)
+  // console.log(i)
 
   const targetCell = gBoard[i][j]
 
@@ -116,15 +116,15 @@ function moveTo(i, j) {
   console.log('jAbsDiff:', jAbsDiff)
   console.log(jAbsDiff)
 
-  if (
-    (iAbsDiff === 1 && jAbsDiff === 0) ||
-    (jAbsDiff === 1 && iAbsDiff === 0) ||
-    jAbsDiff === lastColIdx ||
-    iAbsDiff === lastRowIdx
-  )
-    if (targetCell.gameObject === HERO) {
-      targetCell.gameObject = HERO
-    }
+  // if (
+  //   (iAbsDiff === 1 && jAbsDiff === 0) ||
+  //   (jAbsDiff === 1 && iAbsDiff === 0) ||
+  //   jAbsDiff === lastColIdx ||
+  //   iAbsDiff === lastRowIdx
+  // // )
+  // if (targetCell.gameObject === null) {
+  //   targetCell.gameObject = null
+  // }
 
   renderCell(gHero.pos, '')
   gBoard[gHero.pos.i][gHero.pos.j].gameObject = null
