@@ -9,6 +9,9 @@ function createCell(gameObject = null) {
     gameObject: gameObject,
   }
 }
-function getElCell(pos) {
-  return document.querySelector(`[data-i='${pos.i}'][data-j='${pos.j}']`)
+
+function getClassName(location) {
+  // {i,j}
+  const cellClass = `cell-${location.i}-${location.j}`
+  return cellClass
 }
