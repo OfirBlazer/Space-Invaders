@@ -15,12 +15,17 @@ var gGame = {
 }
 
 function onInit() {
-  gBoard = createBoard()
+  gPoints = 0
+  var elVictory = document.querySelector('.victory')
+  elVictory.style.display = 'none'
 
+  gBoard = createBoard()
+  renderScore()
   createHero(gBoard)
   createAliens(gBoard)
-  console.log(gBoard)
+  // console.log(gBoard)
 
+  shiftBoardRight(gBoard)
   renderBoard(gBoard)
 }
 
@@ -32,17 +37,11 @@ function createBoard() {
 
     for (var j = 0; j < BOARD_SIZE; j++) {
       var cell = createCell()
-      // console.log(cell)
-      // מייצר שורה של aliens
-      if (i === 1 && j <= ALIEN_ROW_LENGTH) {
-        cell.gameObject = ALIEN
-      }
+
       mat[i][j] = cell
     }
   }
-  // console.log(cell)
 
-  // mat[13][5] = cell
   return mat
 }
 
@@ -73,11 +72,24 @@ function renderBoard(board) {
 }
 
 function renderCell(location, value) {
-  console.log(location)
+  // console.log(location)
 
   const cellSelector = '.' + getClassName(location)
   const elCell = document.querySelector(cellSelector)
-  console.log(elCell)
+  // console.log(elCell)
 
   elCell.innerHTML = value
+}
+function renderScore() {
+  var elScore = document.querySelector('.score span ')
+  elScore.innerText = gPoints
+  console.dir(elScore)
+}
+
+function isVictory() {
+  if (gPoints === gAliensOnBoard * 10) {
+    console.log('victory')
+    var elVictory = document.querySelector('.victory')
+    elVictory.style.display = 'block'
+  }
 }

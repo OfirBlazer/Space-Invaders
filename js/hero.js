@@ -1,8 +1,8 @@
 'use strict'
 
-const LASER_SPEED = 30
+const LASER_SPEED = 1
 var gHero = { pos: { i: 12, j: 5 }, isShoot: false }
-
+var gPoints = 0
 // creates the hero and place it on board
 function createHero(board) {
   board[gHero.pos.i][gHero.pos.j].gameObject = HERO
@@ -71,7 +71,7 @@ function moveHero(i, j) {
   gHero.pos.i = i
   gHero.pos.j = j
   gBoard[i][j].gameObject = HERO
-  console.log(gBoard)
+  // console.log(gBoard)
 
   renderCell(gHero.pos, HERO)
 }
@@ -83,7 +83,16 @@ function shoot() {
 
   const shootInterval = setInterval(() => {
     if (laserPos.i < 0) {
+      if (laserPos.i + 1 < gBoard.length) {
+        var lastCell = gBoard[laserPos.i + 1][laserPos.j]
+        if (lastCell.gameObject === LASER) {
+          lastCell.gameObject = null
+          renderCell({ i: laserPos.i + 1, j: laserPos.j }, '')
+        }
+      }
+
       clearInterval(shootInterval)
+
       gHero.isShoot = false
       return
     }
@@ -92,7 +101,13 @@ function shoot() {
 
     if (cell.gameObject === ALIEN) {
       cell.gameObject = null
+
       renderCell(laserPos, '')
+      gPoints += 10
+      renderScore()
+      isVictory()
+      console.log(gPoints)
+
       clearInterval(shootInterval)
       gHero.isShoot = false
 
@@ -117,4 +132,3 @@ function shoot() {
     renderCell(gHero.pos, HERO)
   }, LASER_SPEED)
 }
-function blinkLaser(pos) {}

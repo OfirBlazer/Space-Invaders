@@ -9,8 +9,16 @@
   </head>
 <body onkeydown="onKeyDown(event)" onload="onInit()"></body>
 
-    <div class="board"></div>
+<div class="score">
+  <h2>Score: <span>0</span></h2>
+</div>
 
+<div class="victory">
+  <h2>You Win</h2>
+  <button onclick="onInit()">Restart Game</button>
+</div>
+
+    <div class="board"></div>
     <script src="js/util.js"></script>
     <script src="js/hero.js"></script>
     <script src="js/alien.js"></script>
