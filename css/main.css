@@ -3,11 +3,13 @@ body {
 user-select: none;
 }
 div.board{
-  margin: auto;
+  align-items: center;
   text-align: center;
 
 }
 table {
+  text-align: center;
+  margin: auto;
   border-collapse: collapse;
   table-layout: fixed;
 }
