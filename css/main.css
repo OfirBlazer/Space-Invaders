@@ -34,3 +34,7 @@ table {
   border-radius: 20px;
   padding: 20px;
 }
+.score{
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

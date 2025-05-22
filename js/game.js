@@ -4,9 +4,9 @@ const BOARD_SIZE = 14
 const ALIEN_ROW_LENGTH = 8
 const ALIEN_ROW_COUNT = 3
 
-const HERO = '♆'
+const HERO = '🐓'
 const ALIEN = '👽'
-const LASER = '⤊'
+const LASER = '🥚'
 var gBoard
 
 var gGame = {
@@ -21,11 +21,13 @@ function onInit() {
 
   gBoard = createBoard()
   renderScore()
+
   createHero(gBoard)
   createAliens(gBoard)
+  gIntervalAliens = setInterval(moveAliens, ALIEN_SPEED)
+
   // console.log(gBoard)
 
-  shiftBoardRight(gBoard)
   renderBoard(gBoard)
 }
 
