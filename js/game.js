@@ -3,7 +3,7 @@
 const BOARD_SIZE = 14
 const ALIEN_ROW_LENGTH = 8
 const ALIEN_ROW_COUNT = 3
-
+var elVictoryText = ''
 const HERO = '🐓'
 const ALIEN = '👽'
 const LASER = '🥚'
@@ -15,18 +15,23 @@ var gGame = {
 }
 
 function onInit() {
+  clearInterval(gIntervalAliens)
+
+  gGame.isOn = true
+
   gPoints = 0
   var elVictory = document.querySelector('.victory')
   elVictory.style.display = 'none'
-
+  gAliensTopRowIdx = 1
+  gAliensBottomRowIdx = 3
+  gAliensDirection = 'right'
   gBoard = createBoard()
+
   renderScore()
 
   createHero(gBoard)
   createAliens(gBoard)
   gIntervalAliens = setInterval(moveAliens, ALIEN_SPEED)
-
-  // console.log(gBoard)
 
   renderBoard(gBoard)
 }
@@ -92,6 +97,11 @@ function isVictory() {
   if (gPoints === gAliensOnBoard * 10) {
     console.log('victory')
     var elVictory = document.querySelector('.victory')
+    console.dir(elVictory)
     elVictory.style.display = 'block'
+    console.log(elVictoryText)
+
+    elVictory.innerText = elVictoryText
+    clearInterval(gIntervalAliens)
   }
 }

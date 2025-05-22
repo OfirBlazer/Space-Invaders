@@ -1,5 +1,5 @@
 'use strict'
-const ALIEN_SPEED = 1000
+const ALIEN_SPEED = 500
 
 var gIntervalAliens
 var gAliensDirection = 'right'
@@ -34,12 +34,12 @@ function createAliens(board) {
 function handleAlienHit(pos) {}
 
 function shiftBoardRight(board, fromI = gAliensTopRowIdx, toI = gAliensBottomRowIdx) {
-  console.log()
-
   for (var i = fromI; i <= toI; i++) {
     // console.log('from i', i)
 
     for (var j = gBoard[0].length - 2; j >= 0; j--) {
+      // console.log(j)
+
       if (board[i][j].gameObject === ALIEN) {
         board[i][j].gameObject = null
         board[i][j + 1].gameObject = ALIEN
@@ -74,6 +74,14 @@ function shiftBoardDown(board) {
       }
     }
   }
+  gAliensTopRowIdx++
+  gAliensBottomRowIdx++
+  console.log(gAliensBottomRowIdx)
+
+  if (gAliensBottomRowIdx === 12) {
+    clearInterval(gIntervalAliens)
+    isVictory()
+  }
   renderBoard(board)
 }
 
@@ -82,13 +90,14 @@ function shiftBoardDown(board) {
 // when the aliens are reaching the hero row - interval stops
 function moveAliens() {
   var isCorner = isAlienHitCorner(gBoard)
-  console.log(isCorner)
+  console.log(isCorner, 'iscorner')
 
-  if (isAlienHitCorner(gBoard)) {
+  if (isAlienHitCorner(gBoard) && !isShiftDown) {
     shiftBoardDown(gBoard)
     isShiftDown = true
     gAliensDirection = gAliensDirection === 'right' ? 'left' : 'right'
   } else {
+    isShiftDown = false
     if (gAliensDirection === 'right') {
       shiftBoardRight(gBoard)
       console.log('Moving right')
@@ -97,8 +106,9 @@ function moveAliens() {
       console.log('Moving left')
     }
   }
+  // console.log(gBoard)
 
-  // renderBoard(gBoard)
+  renderBoard(gBoard)
 }
 
 function isAlienHitCorner(board) {

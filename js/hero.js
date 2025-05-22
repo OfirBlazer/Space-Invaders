@@ -1,6 +1,6 @@
 'use strict'
 
-const LASER_SPEED = 50
+const LASER_SPEED = 20
 var gHero = { pos: { i: 12, j: 5 }, isShoot: false }
 var gPoints = 0
 // creates the hero and place it on board

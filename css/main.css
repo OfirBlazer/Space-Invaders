@@ -26,11 +26,14 @@ table {
   padding: 0px;
 }
 .victory{
-  display: none;
+  display: block;
   text-align: center;
 }
 .victory button{
+  display: block;
   background-color: aqua;
+  text-align: center;
+  margin: auto;
   border-radius: 20px;
   padding: 20px;
 }
