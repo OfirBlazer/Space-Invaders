@@ -3,21 +3,15 @@
 const LASER_SPEED = 20
 var gHero = { pos: { i: 12, j: 5 }, isShoot: false }
 var gPoints = 0
-// creates the hero and place it on board
+
 function createHero(board) {
   board[gHero.pos.i][gHero.pos.j].gameObject = HERO
 }
-// Handle game keys
 
 function onKeyDown(event) {
-  // console.log('event:', event)
-
-  // console.log('event.key:', event.key)
-
+  if (!gGame.isOn) return
   const i = gHero.pos.i
   const j = gHero.pos.j
-  console.log(i)
-  console.log(j)
 
   switch (event.key) {
     case 'ArrowLeft':
@@ -33,10 +27,7 @@ function onKeyDown(event) {
   }
 }
 
-// Move the hero right (1) or left (-1)
-
 function moveHero(i, j) {
-  console.log('i, j:', i, j)
   const lastRowIdx = gBoard.length - 1
   const lastColIdx = gBoard[0].length - 1
 
@@ -46,8 +37,6 @@ function moveHero(i, j) {
   if (i === lastRowIdx + 1) i = 0
 
   const targetCell = gBoard[i][j]
-
-  // Calculate distance to make sure we are moving to a neighbor cell
 
   const iAbsDiff = Math.abs(i - gHero.pos.i)
   const jAbsDiff = Math.abs(j - gHero.pos.j)
@@ -80,57 +69,50 @@ function shoot() {
 
   var laserPos = { i: gHero.pos.i - 1, j: gHero.pos.j }
 
-  const shootInterval = setInterval(() => {
-    if (laserPos.i < 0) {
-      if (laserPos.i + 1 < gBoard.length) {
-        var lastCell = gBoard[laserPos.i + 1][laserPos.j]
-
-        if (lastCell.gameObject === LASER && (laserPos.i + 1 !== gHero.pos.i || laserPos.j !== gHero.pos.j)) {
-          lastCell.gameObject = null
-          renderCell({ i: laserPos.i + 1, j: laserPos.j }, '')
-        }
-      }
-
-      clearInterval(shootInterval)
-      gHero.isShoot = false
-      return
-    }
-
-    const cell = gBoard[laserPos.i][laserPos.j]
-
-    if (cell.gameObject === ALIEN) {
-      cell.gameObject = null
-      renderCell(laserPos, '')
-      gPoints += 10
-      renderScore()
-      isVictory()
-      console.log(gPoints)
-
-      clearInterval(shootInterval)
-      gHero.isShoot = false
-
-      if (laserPos.i < gBoard.length - 1) {
-        if (laserPos.i + 1 !== gHero.pos.i || laserPos.j !== gHero.pos.j) {
-          gBoard[laserPos.i + 1][laserPos.j].gameObject = null
-          renderCell({ i: laserPos.i + 1, j: laserPos.j }, '')
-        }
-      }
-
-      return
-    }
-
-    if (laserPos.i < gBoard.length - 1) {
-      if (laserPos.i + 1 !== gHero.pos.i || laserPos.j !== gHero.pos.j) {
-        gBoard[laserPos.i + 1][laserPos.j].gameObject = null
+  var shootInterval = setInterval(function () {
+    if (laserPos.i + 1 < gBoard.length) {
+      var prevCell = gBoard[laserPos.i + 1][laserPos.j]
+      if (prevCell.gameObject === LASER) {
+        prevCell.gameObject = null
         renderCell({ i: laserPos.i + 1, j: laserPos.j }, '')
       }
     }
 
-    gBoard[laserPos.i][laserPos.j].gameObject = LASER
-    renderCell(laserPos, LASER)
+    if (laserPos.i < 0) {
+      clearInterval(shootInterval)
+      gHero.isShoot = false
+      return
+    }
+
+    var currCell = gBoard[laserPos.i][laserPos.j]
+
+    if (currCell.gameObject === ALIEN) {
+      currCell.gameObject = null
+      renderCell({ i: laserPos.i, j: laserPos.j }, '')
+      gPoints += 10
+      renderScore()
+      gAliensOnBoard--
+      isVictory()
+      clearInterval(shootInterval)
+      gHero.isShoot = false
+      return
+    }
+
+    if (laserPos.i === 0) {
+      currCell.gameObject = LASER
+      renderCell({ i: laserPos.i, j: laserPos.j }, LASER)
+      setTimeout(function () {
+        currCell.gameObject = null
+        renderCell({ i: laserPos.i, j: laserPos.j }, '')
+      }, LASER_SPEED)
+      clearInterval(shootInterval)
+      gHero.isShoot = false
+      return
+    }
+
+    currCell.gameObject = LASER
+    renderCell({ i: laserPos.i, j: laserPos.j }, LASER)
 
     laserPos.i--
-
-    renderCell(gHero.pos, HERO)
   }, LASER_SPEED)
 }

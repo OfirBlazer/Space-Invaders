@@ -15,6 +15,7 @@ var gGame = {
 }
 
 function onInit() {
+  document.body.onkeydown = onKeyDown
   clearInterval(gIntervalAliens)
 
   gGame.isOn = true
@@ -59,7 +60,6 @@ function renderBoard(board) {
     strHTML += '<tr>'
     for (var j = 0; j < board[0].length; j++) {
       const currCell = board[i][j]
-      // console.log(currCell)
 
       var cellClass = getClassName({ i, j })
 
@@ -79,29 +79,26 @@ function renderBoard(board) {
 }
 
 function renderCell(location, value) {
-  // console.log(location)
-
   const cellSelector = '.' + getClassName(location)
   const elCell = document.querySelector(cellSelector)
-  // console.log(elCell)
 
   elCell.innerHTML = value
 }
 function renderScore() {
   var elScore = document.querySelector('.score span ')
   elScore.innerText = gPoints
-  console.dir(elScore)
 }
 
 function isVictory() {
-  if (gPoints === gAliensOnBoard * 10) {
-    console.log('victory')
-    var elVictory = document.querySelector('.victory')
-    console.dir(elVictory)
-    elVictory.style.display = 'block'
-    console.log(elVictoryText)
-
-    elVictory.innerText = elVictoryText
+  if (gPoints === 240) {
+    gGame.isOn = false
+    document.body.onkeydown = null
     clearInterval(gIntervalAliens)
+
+    const elVictory = document.querySelector('.victory')
+    elVictory.style.display = 'block'
+
+    const elVictoryText = elVictory.querySelector('span')
+    elVictoryText.innerText = 'You Win! 🎉'
   }
 }
