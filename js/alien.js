@@ -35,10 +35,6 @@ function shiftBoardRight(board, fromI = gAliensTopRowIdx, toI = gAliensBottomRow
         board[i][j].gameObject = null
         board[i][j + 1].gameObject = ALIEN
       }
-      if (board[i][j].gameObject === ALIEN) {
-        board[i][j].gameObject = null
-        board[i][j - 1].gameObject = ALIEN
-      }
     }
     renderBoard(board)
   }
@@ -73,6 +69,7 @@ function shiftBoardDown(board) {
 }
 
 function moveAliens() {
+  if (!gGame.isOn) return
   var isCorner = isAlienHitCorner(gBoard)
 
   if (isCorner && !isShiftDown) {
@@ -105,31 +102,16 @@ function checkAlienReachedHero() {
   }
 }
 
-function moveAliens() {
-  var isCorner = isAlienHitCorner(gBoard)
-
-  if (isCorner && !isShiftDown) {
-    shiftBoardDown(gBoard)
-    isShiftDown = true
-    gAliensDirection = gAliensDirection === 'right' ? 'left' : 'right'
-  } else {
-    isShiftDown = false
-    if (gAliensDirection === 'right') {
-      shiftBoardRight(gBoard)
-    } else {
-      shiftBoardLeft(gBoard)
-    }
-  }
-
-  renderBoard(gBoard)
-
-  checkAlienReachedHero()
-}
 function isAlienHitCorner(board) {
   for (var i = gAliensTopRowIdx; i <= gAliensBottomRowIdx; i++) {
     for (var j = 0; j < board[0].length; j++) {
       if (board[i][j].gameObject === ALIEN) {
         if (j === 0 || j === board[0].length - 1) {
+          console.log(gAliensTopRowIdx)
+          console.log('i', i)
+          console.log('j', j)
+
+          if (gAliensTopRowIdx === board.length - 1) isVictory()
           return true
         }
       }
