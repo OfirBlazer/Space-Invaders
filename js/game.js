@@ -15,25 +15,12 @@ var gGame = {
 }
 
 function onInit() {
-  document.body.onkeydown = onKeyDown
-  clearInterval(gIntervalAliens)
-
+  reset()
   gGame.isOn = true
-
-  gPoints = 0
-  var elVictory = document.querySelector('.victory')
-  elVictory.style.display = 'none'
-  gAliensTopRowIdx = 1
-  gAliensBottomRowIdx = 3
-  gAliensDirection = 'right'
   gBoard = createBoard()
-
   renderScore()
-
   createHero(gBoard)
   createAliens(gBoard)
-  gIntervalAliens = setInterval(moveAliens, ALIEN_SPEED)
-
   renderBoard(gBoard)
 }
 
@@ -100,5 +87,36 @@ function isVictory() {
 
     const elVictoryText = elVictory.querySelector('span')
     elVictoryText.innerText = 'You Win! 🎉'
+    var elStartGame = document.querySelector('.start-game')
+    elStartGame.style.display = 'block'
   }
+}
+function reset() {
+  clearInterval(gIntervalAliens)
+  gPoints = 0
+  gHero = { pos: { i: 12, j: 5 }, isShoot: false }
+  var elVictory = document.querySelector('.victory')
+  // var isFirstMove = 0
+  elVictory.style.display = 'none'
+
+  gAliensTopRowIdx = 1
+  gAliensBottomRowIdx = 3
+  gAliensDirection = 'right'
+}
+function startGame() {
+  isFirstShoot++
+  gGame.isOn = true
+  var elStartGame = document.querySelector('.start-game')
+  elStartGame.style.display = 'none'
+
+  reset()
+  clearInterval(gIntervalAliens)
+  gGame.isOn = true
+  gBoard = createBoard()
+  renderScore()
+  createHero(gBoard)
+  createAliens(gBoard)
+  gIntervalAliens = setInterval(moveAliens, ALIEN_SPEED)
+  renderBoard(gBoard)
+  document.body.onkeydown = onKeyDown
 }

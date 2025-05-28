@@ -1,5 +1,5 @@
 'use strict'
-const ALIEN_SPEED = 300
+const ALIEN_SPEED = 1000
 
 var gIntervalAliens
 var gAliensDirection = 'right'
@@ -74,14 +74,18 @@ function moveAliens() {
 
   if (isCorner && !isShiftDown) {
     shiftBoardDown(gBoard)
+    // console.log('down')
+
     isShiftDown = true
     gAliensDirection = gAliensDirection === 'right' ? 'left' : 'right'
   } else {
     isShiftDown = false
     if (gAliensDirection === 'right') {
       shiftBoardRight(gBoard)
+      // console.log('right')
     } else {
       shiftBoardLeft(gBoard)
+      // console.log('left')
     }
   }
   checkAlienReachedHero()
@@ -107,10 +111,6 @@ function isAlienHitCorner(board) {
     for (var j = 0; j < board[0].length; j++) {
       if (board[i][j].gameObject === ALIEN) {
         if (j === 0 || j === board[0].length - 1) {
-          console.log(gAliensTopRowIdx)
-          console.log('i', i)
-          console.log('j', j)
-
           if (gAliensTopRowIdx === board.length - 1) isVictory()
           return true
         }

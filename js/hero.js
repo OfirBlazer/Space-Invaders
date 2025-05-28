@@ -1,9 +1,9 @@
 'use strict'
 
-const LASER_SPEED = 40
+const LASER_SPEED = 30
 var gHero = { pos: { i: 12, j: 5 }, isShoot: false }
 var gPoints = 0
-
+var isFirstShoot = 0
 function createHero(board) {
   board[gHero.pos.i][gHero.pos.j].gameObject = HERO
 }
@@ -16,13 +16,16 @@ function onKeyDown(event) {
   switch (event.key) {
     case 'ArrowLeft':
       moveHero(i, j - 1)
+      console.log('left')
+
       break
     case 'ArrowRight':
       moveHero(i, j + 1)
+      console.log('right')
       break
     case 'ArrowUp':
       if (!gHero.isShoot) shoot()
-
+      console.log('shoot')
       break
   }
 }
@@ -65,6 +68,12 @@ function moveHero(i, j) {
 }
 
 function shoot() {
+  isFirstShoot++
+  if (isFirstShoot === 1) {
+    gGame.isOn = true
+    startGame()
+    onKeyDown(event)
+  }
   gHero.isShoot = true
 
   var laserPos = { i: gHero.pos.i - 1, j: gHero.pos.j }
