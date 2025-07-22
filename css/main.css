@@ -1,78 +1,210 @@
 body {
-  background: rgb(44, 15, 126);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #fff;
+  font-family: 'Rubik', sans-serif;
+  background-color: #0e0e0e;
+  color: white;
   margin: 0;
-  padding: 0;
-  user-select: none;
+  padding: 0 1.5rem;
+  direction: rtl;
 }
 
-div.board {
+header {
+  background: linear-gradient(90deg, #000000, #6e0f0f);
+  padding: 1rem 2rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding-top: 30px;
 }
 
-table {
-  margin: 20px auto;
-  border-collapse: collapse;
+header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.8rem;
 }
 
-.cell {
-  background-color: #1e1e2f;
-  border: 1px solid #444;
-  color: #5dece3;
-  width: 45px;
-  height: 45px;
-  font-size: 24px;
-  text-align: center;
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
-
-
-.score {
-  font-size: 24px;
-  text-align: center;
-  margin-top: 10px;
-  color: #00ffe5;
-  text-shadow:  0 0  5px #00ffe5;
+nav a:hover {
+  color: #ff3c3c;
 }
 
-.victory {
-  display: none;
-  text-align: center;
-  margin-top: 30px;
+section {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #1a1a1a;
+  border-radius: 10px;
 }
 
-.victory button {
-  background-color: #00d4ff;
+h2 {
+  border-bottom: 2px solid #ff3c3c;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+form {
+  position: relative; /* חשוב לתיבת ההשלמה */
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+input#food-name,
+input#food-grams,
+#email-input,
+#password-input,
+#name,
+#email,
+textarea {
+  flex-grow: 1;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 5px;
   border: none;
-  color: #1e1e2f;
-  padding: 15px 30px;
-  font-size: 18px;
+  background: #2c2c2c;
+  color: white;
+}
+
+input#food-grams {
+  max-width: 100px;
+  flex-grow: 0;
+}
+
+button[type='submit'] {
+  background: #ff3c3c;
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
   border-radius: 25px;
   cursor: pointer;
- 
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.victory button:hover {
-  background-color: #00a8cc;
+button[type='submit']:hover {
+  background: #e62e2e;
 }
 
+ul#food-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-.start-game button{
-  margin: auto;
-  display: block;
-  background-color: #00ff40;
-  border: none;
-  color: #1e1e2f;
-  
-  padding: 15px 30px;
-  font-size: 18px;
-  border-radius: 25px;
+ul#food-list li {
+  background: #2c2c2c;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: normal;
+}
+
+/* תיבת ההשלמה */
+div.suggestions-container {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  background: #333;
+  border-radius: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+  color: white;
+  font-size: 0.9rem;
+}
+
+div.suggestions-container div {
+  padding: 0.5rem;
   cursor: pointer;
 }
-.start-game button:hover{
-  background-color: #16ca067a;
-  
+
+div.suggestions-container div:hover {
+  background: #ff3c3c;
+}
+
+/* טפסים יצירתיים נוספים */
+#auth-form input,
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#contact-form button {
+  width: 100%;
+  background: #ff3c3c;
+  padding: 1rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#contact-form button:hover {
+  background: #e62e2e;
+}
+
+#form-status {
+  margin-top: 0.5rem;
+  color: #ff3c3c;
+  font-weight: 700;
+  min-height: 1.2em;
+}
+
+#auth-message {
+  margin-top: 0.5rem;
+  color: #ff3c3c;
+  font-weight: 700;
+  min-height: 1.2em;
+}
+
+.btn {
+  background: #ff3c3c;
+  padding: 0.8rem 1.6rem;
+  border-radius: 25px;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #e62e2e;
+}
+
+.suggestions-container {
+  position: absolute;
+  background: #333;
+  border-radius: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 100%;
+  color: white;
+  z-index: 1000;
+  top: 38px; /* להתאים לגובה שדה הקלט */
+  left: 0;
+}
+
+.suggestions-container div {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.suggestions-container div:hover {
+  background: #ff3c3c;
 }
