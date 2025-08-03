@@ -1,83 +1,210 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Liel Fit - מאמן כושר אישי</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet" />
   </head>
   <body>
     <header>
       <h1>Liel Fit</h1>
       <nav>
         <a href="#about">אודות</a>
-        <a href="#programs">תוכניות</a>
-        <a href="#food-log">יומן תזונה</a>
+        <a href="#videos">סרטונים</a>
+        <a href="#plans">תוכניות</a>
+        <a href="#nutrition">יומן תזונה</a>
         <a href="#contact">צור קשר</a>
       </nav>
     </header>
 
-    <section id="auth-section">
-      <h2>התחבר או הרשם</h2>
-      <form id="auth-form">
-        <input type="email" id="email-input" placeholder="אימייל" required />
-        <input type="password" id="password-input" placeholder="סיסמה" required />
-        <button type="submit">התחבר / הרשמה</button>
-      </form>
-      <p id="auth-message"></p>
-    </section>
+    <main>
+      <section id="auth-section">
+        <h2>התחברות</h2>
+        <form id="auth-form">
+          <input type="email" id="email-input" placeholder="אימייל" required />
+          <input type="password" id="password-input" placeholder="סיסמה" required />
+          <button type="submit">התחבר</button>
+        </form>
+        <p id="auth-message"></p>
+      </section>
 
-    <section class="hero">
-      <h2>תשנה את הגוף שלך - תשנה את החיים שלך</h2>
-      <p>אימונים מותאמים אישית | ליווי מקצועי | שינוי אמיתי</p>
-      <a href="#contact" class="btn">קבע פגישה</a>
-    </section>
+      <section id="main-content" style="display: none">
+        <section id="about">
+          <h2>אודות</h2>
+          <p>ברוך הבא ל־Liel Fit! כאן תמצא אימונים מותאמים אישית, ייעוץ תזונתי, וכלים שיעזרו לך להגיע למטרות שלך.</p>
+        </section>
 
-    <section id="about">
-      <h2>מי אני</h2>
-      <p>
-        נעים להכיר! אני Liel – מאמן כושר מוסמך עם ניסיון של מעל 7 שנים באימון אישי, תזונה, וליווי מתאמנים בכל הרמות. אני
-        כאן כדי להוביל אותך לתוצאות – בדרך חכמה, בטוחה ומקצועית.
-      </p>
-    </section>
+        <section id="plans">
+          <h2>תוכניות אימון</h2>
+          <ul>
+            <li>🔥 תוכנית חיטוב 30 יום</li>
+            <li>💪 אימוני כוח למתקדמים</li>
+            <li>🏃 כושר פונקציונלי למתחילים</li>
+          </ul>
+        </section>
 
-    <section id="programs">
-      <h2>תוכניות אימון</h2>
-      <ul>
-        <li><strong>אימון אישי 1 על 1</strong> – בבית / בפארק / בסטודיו</li>
-        <li><strong>אימון אונליין + תזונה</strong> – ליווי מלא בזום + תפריט מותאם</li>
-        <li><strong>קבוצות קטנות</strong> – אווירה מניעה עד 6 משתתפים</li>
-      </ul>
-    </section>
+        <section id="nutrition">
+          <h2>יומן תזונה</h2>
+          <form id="food-form">
+            <input type="text" id="food-name" placeholder="שם מאכל" required />
+            <input type="number" id="food-grams" placeholder="גרמים" required />
+            <button type="submit">הוסף</button>
+          </form>
+          <div id="suggestions" class="suggestions-container"></div>
+          <ul id="food-list">
+            <li>לא הוזנו עדיין נתונים</li>
+          </ul>
+        </section>
 
-    <section id="food-log">
-      <h2>יומן תזונה</h2>
-      <form id="food-form" autocomplete="off">
-        <input type="text" id="food-name" placeholder="מה אכלת?" required />
-        <div class="suggestions-container" id="suggestions"></div>
-        <input type="number" id="food-grams" placeholder="כמה גרם?" required min="1" />
-        <button type="submit">הוסף</button>
-      </form>
-      <ul id="food-list">
-        <li>לא הוזנו עדיין נתונים</li>
-      </ul>
-    </section>
+        <section id="videos">
+          <h2>סרטוני השראה ואימון</h2>
 
-    <section id="contact">
-      <h2>צור קשר</h2>
-      <form id="contact-form">
-        <input type="text" id="name" placeholder="שם מלא" required />
-        <input type="email" id="email" placeholder="אימייל" required />
-        <textarea id="message" placeholder="איך אפשר לעזור לך?" required></textarea>
-        <button type="submit">שלח</button>
-      </form>
-      <p id="form-status"></p>
-    </section>
+          <div class="video-category">
+            <button class="category-toggle">יד אחורית ▼</button>
+            <div class="category-content" style="display: none; padding-right: 1rem">
+              <button class="video-toggle" data-video-id="ZvF4Oi_6Vtg">אימון יד אחורית 1</button>
+              <div class="video-container" style="display: none"></div>
+              <button class="video-toggle" data-video-id="TgbNymZ7vqY">אימון יד אחורית 2</button>
+              <div class="video-container" style="display: none"></div>
+            </div>
+          </div>
+
+          <div class="video-category">
+            <button class="category-toggle">יד קדמית ▼</button>
+            <div class="category-content" style="display: none; padding-right: 1rem">
+              <button class="video-toggle" data-video-id="abcd1234">אימון יד קדמית 1</button>
+              <div class="video-container" style="display: none"></div>
+              <button class="video-toggle" data-video-id="efgh5678">אימון יד קדמית 2</button>
+              <div class="video-container" style="display: none"></div>
+            </div>
+          </div>
+
+          <div class="video-category">
+            <button class="category-toggle">גב ▼</button>
+            <div class="category-content" style="display: none; padding-right: 1rem">
+              <button class="subcategory-toggle">גב עליון ▼</button>
+              <div class="subcategory-content" style="display: none; padding-right: 1rem; margin-bottom: 1rem">
+                <button class="video-toggle" data-video-id="ijkl9012">אימון גב עליון 1</button>
+                <div class="video-container" style="display: none"></div>
+                <button class="video-toggle" data-video-id="mnop3456">אימון גב עליון 2</button>
+                <div class="video-container" style="display: none"></div>
+              </div>
+
+              <button class="subcategory-toggle">גב תחתון ▼</button>
+              <div class="subcategory-content" style="display: none; padding-right: 1rem">
+                <button class="video-toggle" data-video-id="qrst7890">אימון גב תחתון 1</button>
+                <div class="video-container" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-category">
+            <button class="category-toggle">רגליים ▼</button>
+            <div class="category-content" style="display: none; padding-right: 1rem">
+              <button class="video-toggle" data-video-id="uvwx1234">אימון רגליים 1</button>
+              <div class="video-container" style="display: none"></div>
+              <button class="video-toggle" data-video-id="yzab5678">אימון רגליים 2</button>
+              <div class="video-container" style="display: none"></div>
+            </div>
+          </div>
+
+          <div class="video-category">
+            <button class="category-toggle">כתפיים ▼</button>
+            <div class="category-content" style="display: none; padding-right: 1rem">
+              <button class="video-toggle" data-video-id="cdef9012">אימון כתפיים 1</button>
+              <div class="video-container" style="display: none"></div>
+              <button class="video-toggle" data-video-id="ghij3456">אימון כתפיים 2</button>
+              <div class="video-container" style="display: none"></div>
+            </div>
+          </div>
+
+          <div class="video-category">
+            <button class="category-toggle">חזה ▼</button>
+            <div class="category-content" style="display: none; padding-right: 1rem">
+              <button class="subcategory-toggle">חזה עליון ▼</button>
+              <div class="subcategory-content" style="display: none; padding-right: 1rem; margin-bottom: 1rem">
+                <button class="video-toggle" data-video-id="klmn7890">אימון חזה עליון 1</button>
+                <div class="video-container" style="display: none"></div>
+              </div>
+
+              <button class="subcategory-toggle">חזה תחתון ▼</button>
+              <div class="subcategory-content" style="display: none; padding-right: 1rem">
+                <button class="video-toggle" data-video-id="opqr1234">אימון חזה תחתון 1</button>
+                <div class="video-container" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact">
+          <h2>צור קשר</h2>
+          <form id="contact-form">
+            <input type="text" placeholder="שם מלא" required />
+            <input type="email" placeholder="אימייל" required />
+            <textarea placeholder="הודעה" required></textarea>
+            <button type="submit">שלח</button>
+          </form>
+          <p id="form-status"></p>
+        </section>
+
+        <a href="#" id="logout-link" style="display: none">התנתק</a>
+      </section>
+    </main>
 
     <footer>
-      <p>© 2025 Liel – כל הזכויות שמורות</p>
+      <p>© 2025 Liel Fit - כל הזכויות שמורות</p>
     </footer>
+
     <script src="js/main.js"></script>
+    <script>
+      // אקורדיון קטגוריות
+      document.querySelectorAll('.category-toggle').forEach((button) => {
+        button.addEventListener('click', () => {
+          const content = button.nextElementSibling
+          const isOpen = content.style.display === 'block'
+          content.style.display = isOpen ? 'none' : 'block'
+          button.textContent = button.textContent.replace(isOpen ? '▲' : '▼', isOpen ? '▼' : '▲')
+        })
+      })
+
+      // אקורדיון תת-קטגוריות
+      document.querySelectorAll('.subcategory-toggle').forEach((button) => {
+        button.addEventListener('click', () => {
+          const content = button.nextElementSibling
+          const isOpen = content.style.display === 'block'
+          content.style.display = isOpen ? 'none' : 'block'
+          button.textContent = button.textContent.replace(isOpen ? '▲' : '▼', isOpen ? '▼' : '▲')
+        })
+      })
+
+      // טיפול בסרטוני וידאו
+      document.querySelectorAll('.video-toggle').forEach((button) => {
+        button.addEventListener('click', () => {
+          const videoId = button.dataset.videoId
+          const container = button.nextElementSibling
+          if (!container) return
+
+          // סוגר את כל הוידאוים הפתוחים לפני פתיחת החדש
+          document.querySelectorAll('.video-container').forEach((vc) => {
+            vc.innerHTML = ''
+            vc.style.display = 'none'
+          })
+
+          // אם הסרטון כבר פתוח, נסגור אותו
+          if (container.style.display === 'block') {
+            container.innerHTML = ''
+            container.style.display = 'none'
+            return
+          }
+
+          // פותח את הסרטון
+          container.innerHTML = `<iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" 
+            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+          container.style.display = 'block'
+        })
+      })
+    </script>
   </body>
 </html>

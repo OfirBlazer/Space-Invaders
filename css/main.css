@@ -1,60 +1,92 @@
 body {
   font-family: 'Rubik', sans-serif;
   background-color: #0e0e0e;
-  color: white;
+  color: #f1f1f1;
   margin: 0;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
   direction: rtl;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem; /* בסיס לפונטים */
 }
 
+/* כותרת ראשית + ניווט */
 header {
   background: linear-gradient(90deg, #000000, #6e0f0f);
-  padding: 1rem 2rem;
+  padding: 1.25rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 3px 10px rgba(110, 15, 15, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 header h1 {
   margin: 0;
-  font-weight: 700;
-  font-size: 1.8rem;
+  font-weight: 800;
+  font-size: 2.3rem;
+  letter-spacing: 1.2px;
+  color: #fff;
+  user-select: none;
+  text-shadow: 1px 1px 5px rgba(255, 60, 60, 0.7);
 }
 
 nav a {
-  color: white;
+  color: #fff;
   text-decoration: none;
-  margin: 0 1rem;
-  font-weight: bold;
-  transition: color 0.3s;
+  margin: 0 1.2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-nav a:hover {
-  color: #ff3c3c;
+nav a:hover,
+nav a:focus {
+  background-color: #ff3c3c;
+  color: #fff;
+  outline: none;
+  box-shadow: 0 0 8px #ff3c3c;
 }
 
+/* סקשנים */
 section {
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 1rem;
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
   background: #1a1a1a;
-  border-radius: 10px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(255, 60, 60, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+section:hover {
+  box-shadow: 0 0 30px rgba(255, 60, 60, 0.3);
 }
 
 h2 {
-  border-bottom: 2px solid #ff3c3c;
+  border-bottom: 3px solid #ff3c3c;
   display: inline-block;
-  padding-bottom: 0.3rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.6rem;
+  font-weight: 800;
+  font-size: 1.9rem;
+  letter-spacing: 0.5px;
+  color: #ff3c3c;
+  user-select: none;
 }
 
+/* טפסים */
 form {
-  position: relative; /* חשוב לתיבת ההשלמה */
+  position: relative;
   display: flex;
-  gap: 0.8rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: 1.6rem;
 }
 
 input#food-name,
@@ -65,35 +97,84 @@ input#food-grams,
 #email,
 textarea {
   flex-grow: 1;
-  padding: 0.8rem;
-  font-size: 1rem;
-  border-radius: 5px;
+  padding: 0.9rem 1.2rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
   border: none;
-  background: #2c2c2c;
-  color: white;
+  background: #2e2e2e;
+  color: #eee;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.8);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 500;
+  font-family: 'Rubik', sans-serif;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 input#food-grams {
-  max-width: 100px;
+  max-width: 110px;
   flex-grow: 0;
+  text-align: center;
 }
 
-button[type='submit'] {
-  background: #ff3c3c;
+input#food-name:focus,
+input#food-grams:focus,
+#email-input:focus,
+#password-input:focus,
+#name:focus,
+#email:focus,
+textarea:focus {
+  background-color: #3a3a3a;
+  box-shadow: 0 0 8px #ff3c3c;
+  outline: none;
+  color: #fff;
+}
+
+/* טקסט ארוך */
+textarea {
+  min-height: 100px;
+  resize: vertical;
+  font-family: 'Rubik', sans-serif;
+}
+
+/* כפתורים */
+button[type='submit'],
+.video-toggle,
+.category-toggle,
+.subcategory-toggle {
+  background: linear-gradient(135deg, #ff3c3c, #d12e2e);
   color: white;
   border: none;
-  padding: 0 1.5rem;
-  border-radius: 25px;
+  padding: 0.9rem 2.2rem;
+  border-radius: 30px;
   cursor: pointer;
   font-weight: 700;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+  font-size: 1.1rem;
+  letter-spacing: 0.8px;
+  box-shadow: 0 5px 15px rgba(255, 60, 60, 0.6);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  white-space: nowrap;
+  margin: 0.3rem 0;
+  text-align: right;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-button[type='submit']:hover {
-  background: #e62e2e;
+button[type='submit']:hover,
+button[type='submit']:focus,
+.video-toggle:hover,
+.video-toggle:focus,
+.category-toggle:hover,
+.category-toggle:focus,
+.subcategory-toggle:hover,
+.subcategory-toggle:focus {
+  background: linear-gradient(135deg, #ff5959, #ee2e2e);
+  box-shadow: 0 8px 20px rgba(255, 89, 89, 0.8);
+  outline: none;
 }
 
+/* רשימות */
 ul#food-list {
   list-style: none;
   padding: 0;
@@ -101,110 +182,262 @@ ul#food-list {
 }
 
 ul#food-list li {
-  background: #2c2c2c;
-  padding: 0.7rem 1rem;
-  border-radius: 6px;
-  margin-bottom: 0.7rem;
-  font-weight: 500;
-  line-height: 1.3;
-  white-space: normal;
+  background: #2e2e2e;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #eee;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+  transition: background-color 0.3s ease;
 }
 
-/* תיבת ההשלמה */
+ul#food-list li:hover {
+  background-color: #3a3a3a;
+}
+
+/* הצעות השלמה */
 div.suggestions-container {
   position: absolute;
-  top: 40px;
+  top: 44px;
   left: 0;
   right: 0;
-  background: #333;
-  border-radius: 5px;
-  max-height: 150px;
+  background: #2f2f2f;
+  border-radius: 10px;
+  max-height: 160px;
   overflow-y: auto;
-  z-index: 1000;
-  color: white;
-  font-size: 0.9rem;
+  z-index: 1100;
+  color: #eee;
+  font-size: 1rem;
+  box-shadow: 0 0 15px rgba(255, 60, 60, 0.7);
+  user-select: none;
 }
 
 div.suggestions-container div {
-  padding: 0.5rem;
+  padding: 0.65rem 1.2rem;
   cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.25s ease;
 }
 
-div.suggestions-container div:hover {
+div.suggestions-container div:hover,
+div.suggestions-container div:focus {
   background: #ff3c3c;
+  color: white;
+  outline: none;
 }
 
-/* טפסים יצירתיים נוספים */
-#auth-form input,
-#contact-form input,
-#contact-form textarea {
+/* סקשן וידאו */
+#videos {
+  background-color: #181818;
+  padding: 3.5rem 2rem;
+  text-align: center;
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(255, 60, 60, 0.2);
+  max-width: 720px;
+  margin: 3rem auto 5rem auto;
+}
+
+/* כותרת סקשן וידאו */
+#videos h2 {
+  color: #fff;
+  margin-bottom: 2.5rem;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-shadow: 0 0 8px rgba(255, 60, 60, 0.9);
+  user-select: none;
+}
+
+/* פריטים בקטגוריות */
+.video-category {
+  margin-bottom: 2rem;
+  text-align: right;
+}
+
+/* כפתורי קטגוריה ותת-קטגוריה */
+.category-toggle,
+.subcategory-toggle {
   width: 100%;
-  margin-bottom: 1rem;
+  text-align: right;
+  user-select: none;
+}
+
+/* תכולת קטגוריות ותת-קטגוריות */
+.category-content,
+.subcategory-content {
+  margin-top: 0.8rem;
+  margin-right: 1rem;
+  border-right: 3px solid #ff3c3c;
+  border-radius: 0 12px 12px 0;
+  padding-right: 1rem;
+  background: #2b2b2b;
+  box-shadow: inset 0 0 10px rgba(255, 60, 60, 0.15);
+}
+
+/* כפתורי וידאו */
+.video-toggle {
+  width: 100%;
+  max-width: 650px;
+  margin: 0.4rem 0;
+  text-align: right;
+  user-select: none;
+}
+
+/* מיכל וידאו */
+.video-container {
+  margin-top: 1.3rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(255, 60, 60, 0.35);
+}
+
+/* טפסים צור קשר והתחברות */
+#contact-form input,
+#contact-form textarea,
+#auth-form input {
+  width: 100%;
+  margin-bottom: 1.3rem;
+  box-sizing: border-box;
 }
 
 #contact-form button {
   width: 100%;
-  background: #ff3c3c;
-  padding: 1rem;
+  background: linear-gradient(135deg, #ff3c3c, #d12e2e);
+  padding: 1.15rem 0;
   border: none;
   border-radius: 30px;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 7px 20px rgba(255, 60, 60, 0.7);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  box-sizing: border-box;
 }
 
-#contact-form button:hover {
-  background: #e62e2e;
+#contact-form button:hover,
+#contact-form button:focus {
+  background: linear-gradient(135deg, #ff5959, #ee2e2e);
+  box-shadow: 0 10px 28px rgba(255, 89, 89, 0.9);
+  outline: none;
 }
 
-#form-status {
-  margin-top: 0.5rem;
-  color: #ff3c3c;
-  font-weight: 700;
-  min-height: 1.2em;
-}
-
+/* הודעות טופס */
+#form-status,
 #auth-message {
-  margin-top: 0.5rem;
+  margin-top: 0.7rem;
   color: #ff3c3c;
   font-weight: 700;
-  min-height: 1.2em;
+  min-height: 1.3em;
+  user-select: none;
+  text-align: center;
 }
 
-.btn {
-  background: #ff3c3c;
-  padding: 0.8rem 1.6rem;
-  border-radius: 25px;
-  color: white;
-  text-decoration: none;
-  font-weight: 700;
+/* קישורים */
+a#logout-link {
   display: inline-block;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #e62e2e;
-}
-
-.suggestions-container {
-  position: absolute;
-  background: #333;
-  border-radius: 5px;
-  max-height: 150px;
-  overflow-y: auto;
-  width: 100%;
-  color: white;
-  z-index: 1000;
-  top: 38px; /* להתאים לגובה שדה הקלט */
-  left: 0;
-}
-
-.suggestions-container div {
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
-.suggestions-container div:hover {
+  margin: 2rem auto 5rem;
   background: #ff3c3c;
+  color: white;
+  padding: 0.9rem 2.6rem;
+  font-weight: 700;
+  border-radius: 40px;
+  text-decoration: none;
+  box-shadow: 0 5px 18px rgba(255, 60, 60, 0.7);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+a#logout-link:hover,
+a#logout-link:focus {
+  background-color: #e62e2e;
+  box-shadow: 0 8px 26px rgba(230, 46, 46, 0.9);
+  outline: none;
+}
+
+/* רספונסיביות בסיסית */
+@media (max-width: 720px) {
+  body {
+    padding: 0 1rem;
+    font-size: 0.95rem;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
+  }
+
+  nav a {
+    margin: 0 0.6rem;
+    font-size: 1rem;
+  }
+
+  section {
+    margin: 1.5rem 0;
+    padding: 1.6rem 1.8rem;
+  }
+
+  .video-item {
+    max-width: 100%;
+  }
+
+  form {
+    gap: 0.8rem;
+  }
+
+  button[type='submit'],
+  .video-toggle,
+  .category-toggle,
+  .subcategory-toggle {
+    white-space: normal;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+  }
+}
+
+/* רספונסיביות לטלפונים קטנים יותר */
+@media (max-width: 480px) {
+  body {
+    padding: 0 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  header {
+    padding: 0.8rem 1rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    margin: 0 0.4rem;
+  }
+
+  section {
+    padding: 1rem 1rem;
+    margin: 1rem 0;
+  }
+
+  button[type='submit'],
+  .video-toggle,
+  .category-toggle,
+  .subcategory-toggle {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  input#food-grams {
+    max-width: 100%;
+  }
+
+  #videos {
+    padding: 2rem 1rem;
+    margin: 2rem 1rem 4rem 1rem;
+  }
 }

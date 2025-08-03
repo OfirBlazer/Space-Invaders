@@ -185,3 +185,24 @@ contactForm.addEventListener('submit', (e) => {
 
 // --- אתחול מצב התחברות ---
 checkLoggedIn()
+document.querySelectorAll('.video-toggle').forEach((button) => {
+  button.addEventListener('click', () => {
+    const videoId = button.dataset.videoId
+    const container = button.nextElementSibling
+
+    if (container.innerHTML === '') {
+      container.innerHTML = `
+        <iframe
+          src="https://www.youtube.com/embed/${videoId}"
+          frameborder="0"
+          allowfullscreen
+          style="width: 100%; height: 315px; border-radius: 8px;"
+        ></iframe>
+      `
+      container.style.display = 'block'
+    } else {
+      container.innerHTML = ''
+      container.style.display = 'none'
+    }
+  })
+})
